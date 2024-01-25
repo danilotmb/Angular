@@ -1,0 +1,28 @@
+<!-- authors-table -->
+<div style="height:400px;overflow:auto;border-style:inset;border-width:2px;margin-top:50px;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let author of authors">
+                <td class="align-middle">{{author.name}}</td>
+                <td class="align-middle">{{author.lastname}}</td>
+                <td class="text-end align-middle">
+                    <button class="btn btn-sm btn-primary me-2" 
+                        (click)="selectAuthorToUpdate(author)">
+                        Modifica
+                    </button>
+                    <button class="btn btn-sm btn-danger" 
+                        (click)="deleteAuthor(author.id)">
+                        Elimina
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

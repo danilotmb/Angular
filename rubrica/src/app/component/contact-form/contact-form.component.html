@@ -1,0 +1,69 @@
+<div class="popup-overlay" [ngClass]="{'visible' : isVisible}">
+    <div class="popup">
+        <div class="row">
+            <h5 class="text-primary text-center">
+                {{contact ? 'Modifica Contatto' : 'Nuovo Contatto'}}
+            </h5>
+        </div>
+        <form #f="ngForm" (submit)="formManager(f)">
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label>Nome:</label>
+                    <input 
+                        [ngModel]="contact?.name" type="text" name="name" class="form-control" required
+                        pattern="[a-zA-Z\sàèìòù]{1,50}" #name="ngModel"
+                    >
+                    <small class="text-danger" [ngStyle]="{'display': name.invalid && name.dirty ? 'block' : 'none'}">
+                        Caratteri non ammessi
+                    </small>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label>Cognome:</label>
+                    <input 
+                        [ngModel]="contact?.lastname" type="text" name="lastname" 
+                        class="form-control" required
+                        pattern="[a-zA-Z\sàèìòù]{1,50}" #lastname="ngModel"
+                    >
+                    <small class="text-danger" [ngStyle]="{'display': lastname.invalid && lastname.dirty ? 'block' : 'none'}">
+                        Caratteri non ammessi
+                    </small>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label>Telefono:</label>
+                    <input 
+                        [ngModel]="contact?.phone" type="text" name="phone" 
+                        class="form-control" required
+                    >
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label>Mail:</label>
+                    <input 
+                        [ngModel]="contact?.mail" type="text" name="mail" 
+                        class="form-control" required
+                    >
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <button type="button" class="btn btn-outline-warning" (click)="closeForm(f)">
+                        Abbandona
+                    </button>
+                    <input 
+                        type="submit" class="btn btn-outline-primary ms-4" 
+                        [value]="contact ? 'Modifica' : 'Registra' " 
+                        [disabled]="f.invalid"
+                    >
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

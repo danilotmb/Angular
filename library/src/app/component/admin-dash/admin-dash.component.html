@@ -1,0 +1,37 @@
+<div class="container">
+
+    <app-navbar
+        (authorForm)="activateAuthorForm()" 
+        (bookForm)="activateBookForm()"
+    ></app-navbar>
+
+    <app-books-table
+        [books]="books"
+        (update)="bookFormUpdate($event)"
+    ></app-books-table>
+
+    <div *ngIf="serverError" class="alert alert-danger text-center">
+        {{serverError}}
+    </div>
+
+    <app-autors-table *ngIf="!serverError"
+        [authors]="authors"
+        (update)="authorFormUpdate($event)"
+        (delete)="callGetApi()"
+    ></app-autors-table>
+
+    <app-author-form
+        [isVisible]="authorFormVisible"
+        (close)="deactivateAuthorForm()"
+        [author]="authorToUpdate"
+    ></app-author-form>
+
+    <app-book-form
+        [isVisible]="bookFormVisible"
+        [authors]="authors"
+        (close)="deactivateBookForm()"
+        [book]="bookToUpdate"
+        [bookCover]="bookToUpdateCover"
+    ></app-book-form>
+
+</div>

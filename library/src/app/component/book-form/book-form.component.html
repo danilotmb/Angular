@@ -1,0 +1,81 @@
+<div class="popup-overlay" [ngClass]="{'visible':isVisible}">
+    <div class="popup">
+        <div class="row">
+            <h5 class="text-primary text-center">
+                {{book ? 'Modifica Libro' : 'Nuovo Libro' }}
+            </h5>
+        </div>
+        <div class="row mt-2">
+            <div class="col-7">
+                <form #f="ngForm" (submit)="formManager(f)">
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Titolo:</label>
+                            <input [ngModel]="book?.title" type="text" name="title" class="form-control" required>
+                        </div>
+                        <div class="col-6">
+                            <label>Autore:</label>
+                            <select [ngModel]="book?.author?.id" name="author" class="form-select" required>
+                                <option *ngFor="let author of authors" [value]="author.id">
+                                    {{author.name}} {{author.lastname}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Pubblicazione:</label>
+                            <input [ngModel]="book?.year" type="number" name="year" class="form-control" required>
+                        </div>
+                        <div class="col-6">
+                            <label>Prezzo:</label>
+                            <input [ngModel]="book?.price" type="number" step="any" name="price" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label>Quantità:</label>
+                            <input [ngModel]="book?.quantity" type="number" name="quantity" class="form-control" required>
+                        </div>
+                        <div class="col-9 text-center">
+                            <input type="file" name="cover" class="form-control" 
+                                accept="image/jpeg, image/png" maxlength="1048576"
+                                (change)="uploadCover($event)" 
+                                style="display:none;" #cover
+                            >
+                            
+                            <button type="button" 
+                                class="btn btn-outline-warning mt-4"
+                                (click)="cover.click()" >
+                                {{ bookCover ? 'Modifica Immagine Di Copertina' : 'Carica Immagine Di Copertina' }}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Trama:</label>
+                            <textarea [ngModel]="book?.plot" name="plot" class="form-control" 
+                                rows="7" style="resize: none;"
+                                spellcheck="false" required></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12 text-center">
+                            <button type="button" class="btn btn-outline-warning me-4"
+                                (click)="closeForm(f)">
+                                Abbandona
+                            </button>
+                            <input type="submit" class="btn btn-outline-primary" 
+                                [value]=" book ? 'Modifica' : 'Registra' ">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-5 text-center">
+                <h6 class="mt-4 mb-3">Immagine Caricata</h6>
+                <img [src]="bookCover ? bookCover : '../../../assets/image/book-marker.jpg'" class="img-thumbnail" alt="cover" 
+                    style="width:210px;max-width:210px;height:310px;max-height:310px;">
+            </div>
+        </div>
+    </div>
+</div>

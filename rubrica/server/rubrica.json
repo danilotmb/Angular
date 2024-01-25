@@ -1,0 +1,24 @@
+{
+  "contacts": [
+    {
+      "id": "1",
+      "name": "Mario",
+      "lastname": "Rossi",
+      "phone": "123-456-7890",
+      "mail": "mario.rossi@example.com"
+    },
+    {
+      "id": "2",
+      "name": "Luigi",
+      "lastname": "Verdi",
+      "phone": "987-654-3210",
+      "mail": "luigi.verdi@example.com"
+    },
+    {
+      "name": "Giulia",
+      "lastname": "Bianchi",
+      "phone": "555-123-4567",
+      "mail": "giulia.bianchi@example.com"
+    }
+  ]
+}

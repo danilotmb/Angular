@@ -1,0 +1,23 @@
+<div class="container">
+
+    <app-navbar
+        (contactForm)="activateContactForm()"
+    ></app-navbar>
+
+    <app-contacts-table
+        [contacts]="contacts"
+        (update)="contactFormUpdate($event)"
+        (delete)="callGetApi()" 
+    ></app-contacts-table>
+
+
+    <app-contact-form
+        [isVisible]="contactFormVisible"
+        (close)="deactivateContactForm()"
+        [contact]="contactToUpdate"
+    ></app-contact-form>
+
+
+
+
+</div>
